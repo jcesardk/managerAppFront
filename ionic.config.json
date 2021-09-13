@@ -1,0 +1,7 @@
+{
+  "name": "masterApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
