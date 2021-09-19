@@ -21,9 +21,9 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
-                "glob": "**/*",
-                "input": "src/assets",
-                "output": "assets"
+                "glob": "**/*.svg",
+                "input": "src/assets/custom-icons",
+                "output": "./custom-icons"
               },
               {
                 "glob": "**/*.svg",
@@ -171,6 +171,7 @@
     }
   },
   "cli": {
+    "analytics": false,
     "defaultCollection": "@ionic/angular-toolkit"
   },
   "schematics": {

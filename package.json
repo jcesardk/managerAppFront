@@ -1,5 +1,5 @@
 {
-  "name": "masterApp",
+  "name": "appzello",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
@@ -25,9 +25,14 @@
     "@capacitor/keyboard": "1.0.3",
     "@capacitor/status-bar": "1.0.3",
     "@ionic/angular": "^5.5.2",
+    "font-awesome": "^4.7.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
+  },
+  "config": {
+    "ionic_copy": "./config/copy.config.js",
+    "ionic_sass": "./config/sass.config.js"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.1.1",
