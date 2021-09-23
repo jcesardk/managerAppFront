@@ -9,8 +9,12 @@ const routes: Routes = [
     component: PersonPage
   },
   {
-    path: 'detail',
+    path: 'detail/:id',
     loadChildren: () => import('./detail/detail.module').then( m => m.DetailPageModule)
+  },
+  {
+    path: 'cria-user',
+    loadChildren: () => import('./cria-user/cria-user.module').then( m => m.CriaUserPageModule)
   }
 ];
 

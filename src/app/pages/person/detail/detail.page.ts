@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-detail',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private rota: ActivatedRoute,
+
+  ) { }
 
   ngOnInit() {
+    console.log(this.rota);
   }
 
 }

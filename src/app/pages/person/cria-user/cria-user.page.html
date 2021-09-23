@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formUser">
+    <ion-list>
+      <ion-item>
+        <ion-label>Nome:</ion-label>
+        <ion-input
+          type="text"
+          placeholder=""
+          formControlName="nome"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Senha:</ion-label>
+        <ion-input
+          type="text"
+          placeholder=""
+          formControlName="senha"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>CPF:</ion-label>
+        <ion-input type="text" placeholder="" formControlName="cpf"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>RG:</ion-label>
+        <ion-input type="text" placeholder="" formControlName="rg"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Nascimento</ion-label>
+        <ion-input
+          type="date"
+          placeholder=""
+          formControlName="nascimento"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-select formControlName="perfil" placeholder="Selecione o perfil">
+          <ion-select-option value="administrador"
+            >Administrador</ion-select-option
+          >
+          <ion-select-option value="usuarioComum"
+            >Usuario Comum</ion-select-option
+          >
+          <ion-select-option value="gerente">Gerente</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-select formControlName="aplicativos"  placeholder="Selecione seu(s) aplicativos">
+          <ion-select-option value="brb"
+            >App1</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-button
+      class="botao"
+      color="warning"
+      (click)="cadastro()"
+      [disabled]="!formUser.valid"
+      >Enviar
+    </ion-button>
+  </form>
+</ion-content>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { PessoasService } from './../../service/pessoas.service';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-person',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonPage implements OnInit {
 
-  constructor() { }
+  public dadosPessoa: any;
+
+  constructor(
+    private servico: PessoasService,
+  ) { }
+
+  ionViewDidEnter() {
+    this.getPessoa();
+  }
+
 
   ngOnInit() {
+  }
+
+  private getPessoa(){
+    this.servico.get().subscribe(resposta=> {
+      this.dadosPessoa = resposta;
+      console.log(resposta);
+
+    });
   }
 
 }
