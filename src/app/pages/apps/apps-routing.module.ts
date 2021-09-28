@@ -9,8 +9,12 @@ const routes: Routes = [
     component: AppsPage
   },
   {
-    path: 'apps-detail',
+    path: 'apps-detail/:id',
     loadChildren: () => import('./apps-detail/apps-detail.module').then( m => m.AppsDetailPageModule)
+  },
+  {
+    path: 'criar-apps',
+    loadChildren: () => import('./criar-apps/criar-apps.module').then( m => m.CriarAppsPageModule)
   }
 ];
 

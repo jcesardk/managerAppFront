@@ -1,3 +1,4 @@
+import { AplicativosService } from './../../service/aplicativos.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppsPage implements OnInit {
 
-  constructor() { }
+  public aplicativos: any;
+  constructor(
+    private aplicativoService: AplicativosService
+  ) { }
+
+  ionViewDidEnter(){
+    this.getAplicativos();
+  }
 
   ngOnInit() {
+  }
+
+  private getAplicativos(){
+    this.aplicativoService.get().subscribe(resposta => {
+      this.aplicativos = resposta;
+      console.log(this.aplicativos);
+
+    });
   }
 
 }

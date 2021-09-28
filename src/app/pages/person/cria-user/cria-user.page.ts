@@ -1,8 +1,13 @@
+import { Router } from '@angular/router';
+import { AssociarAppService } from './../../../service/associar-app.service';
 import { PerfilService } from './../../../service/perfil.service';
 import { AplicativosService } from './../../../service/aplicativos.service';
 import { Component, OnInit } from '@angular/core';
+import { mergeMap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PessoasService } from 'src/app/service/pessoas.service';
+import { forkJoin } from 'rxjs';
+
 
 @Component({
   selector: 'app-cria-user',
@@ -30,7 +35,9 @@ export class CriaUserPage implements OnInit {
     private aplicativoService: AplicativosService,
     private formBuilder: FormBuilder,
     private servico: PessoasService,
-    private perfilService: PerfilService
+    private perfilService: PerfilService,
+    private router: Router,
+    private associarAppService: AssociarAppService
   ) { }
 
   ngOnInit() {
@@ -49,9 +56,34 @@ export class CriaUserPage implements OnInit {
   //Envia dados do formulario para GET
   async cadastro(){
     const formEnvio: any = this.formUser.getRawValue();
-    console.log("ENVIOoo", formEnvio);
-    const result = await this.servico.post(formEnvio).toPromise();
-    console.log(result);
+
+    this.servico.post(formEnvio).pipe(
+      mergeMap( (user) => {
+        console.log('userMerge', user);
+
+        const indiceId = '_id';
+        const idUser   = user[indiceId];
+
+        const arrayObs = [];
+
+        formEnvio.aplicativo.forEach(app => {
+          const associar = {
+            _idApp:  app,
+            _idUser: idUser
+          };
+          arrayObs.push(this.associarAppService.post(associar));
+        });
+
+        console.log('chama', arrayObs);
+
+        return forkJoin(arrayObs);
+      })
+    ).subscribe( () => {
+      console.log('Usuario cadastrado');
+      this.router.navigate(['/home/tabs/account']);
+    }, error => {
+      console.log('error no cadastro');
+    });
 
   }
 }

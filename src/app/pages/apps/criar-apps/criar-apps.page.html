@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cadasto de aplicativo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="criaApp">
+
+    <ion-item lines="full">
+      <ion-label position="floating">Name do Aplicativo: </ion-label>
+      <ion-input formControlName="nome"
+        type="text"
+        placeholder=""
+      ></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">BundleId: </ion-label>
+      <ion-input formControlName="bundleId"
+        type="text"
+        placeholder=""
+      ></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button class="cadastrarApp" type="submit" color="warning" expand="block" [disabled]="!criaApp.valid">Cadastrar</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

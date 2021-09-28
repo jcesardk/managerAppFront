@@ -8,10 +8,6 @@ const routes: Routes = [
     path: '',
     component: PerfilPage
   },
-  {
-    path: 'perfil-detail',
-    loadChildren: () => import('./perfil-detail/perfil-detail.module').then( m => m.PerfilDetailPageModule)
-  }
 ];
 
 @NgModule({
