@@ -10,23 +10,25 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-label>Nome: Julio Silva</ion-label>
+      <ion-label>Nome: {{pessoa?.nome}}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>CPF: 222111111</ion-label>
+      <ion-label>Senha: {{pessoa?.senha}}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>RG: 000000</ion-label>
+      <ion-label>CPF: {{pessoa?.cpf}}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>Nascimento: 09/09/09</ion-label>
+      <ion-label>RG: {{pessoa?.rg}}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>Aplicativos: BRB, Monitorar</ion-label>
+      <ion-label>Nascimento: {{pessoa?.nascimento}}</ion-label>
+    </ion-item>
+    <ion-item class="app">
+      <ion-label *ngFor="let aplicativo of pessoa?.aplicativos">Aplicativo: {{aplicativo.nome}}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>Usuario: Administrador</ion-label>
+      <ion-label>Perfil: {{pessoa?.perfil}}</ion-label>
     </ion-item>
   </ion-list>
-
 </ion-content>

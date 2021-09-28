@@ -1,5 +1,8 @@
+import { AplicativosService } from './../../../service/aplicativos.service';
+import { PessoasService } from './../../../service/pessoas.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-detail',
@@ -8,13 +11,34 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DetailPage implements OnInit {
 
+  id;
+  pessoa;
+  aplicativos;
+
   constructor(
-    private rota: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
+    private pessoaService: PessoasService,
+    private aplicativoService: AplicativosService
+
 
   ) { }
 
   ngOnInit() {
-    console.log(this.rota);
+
+    this.id = this.activatedRoute.snapshot.params.id;
+    console.log(this.id);
+    this.pessoaService.getOne(this.id).subscribe( dt => {
+
+      this.pessoa = dt;
+
+    });
+
+    this.aplicativoService.get().subscribe( (apps) => {
+      console.log('sdsd', apps);
+      this.aplicativos = apps;
+    });
+
+
   }
 
 }

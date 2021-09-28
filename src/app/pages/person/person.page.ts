@@ -1,5 +1,5 @@
-import { PessoasService } from './../../service/pessoas.service';
-import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
+import { PessoasService } from 'src/app/service/pessoas.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-person',

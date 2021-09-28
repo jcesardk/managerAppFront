@@ -1,3 +1,5 @@
+import { PerfilService } from './../../../service/perfil.service';
+import { AplicativosService } from './../../../service/aplicativos.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PessoasService } from 'src/app/service/pessoas.service';
@@ -9,6 +11,8 @@ import { PessoasService } from 'src/app/service/pessoas.service';
 })
 export class CriaUserPage implements OnInit {
 
+  aplicativos;
+  perfil;
 
   formUser: FormGroup = this.formBuilder.group({
     nome: [null, [Validators.required]],
@@ -17,24 +21,35 @@ export class CriaUserPage implements OnInit {
     nascimento: [null, [Validators.required]],
     senha: [null, [Validators.required]],
     perfil: [null, [Validators.required] ],
-    aplicativos: [null, [Validators.required]]
+    aplicativo: [null, [Validators.required]]
 
   });
 
   constructor(
     //private pessoasService: PessoasService,
+    private aplicativoService: AplicativosService,
     private formBuilder: FormBuilder,
     private servico: PessoasService,
+    private perfilService: PerfilService
   ) { }
 
   ngOnInit() {
 
+    this.perfilService.get().subscribe( (tiposPerfil) => {
+      console.log('perfil', tiposPerfil);
+      this.perfil = tiposPerfil;
+    });
+
+    this.aplicativoService.get().subscribe( (apps) => {
+      console.log('sdsd', apps);
+      this.aplicativos = apps;
+    });
   }
 
   //Envia dados do formulario para GET
   async cadastro(){
     const formEnvio: any = this.formUser.getRawValue();
-    console.log(formEnvio);
+    console.log("ENVIOoo", formEnvio);
     const result = await this.servico.post(formEnvio).toPromise();
     console.log(result);
 

@@ -9,3 +9,15 @@ ion-toolbar {
     }
   }
 }
+ion-content{
+  ion-list{
+    ion-item{
+      &.app{
+        --background: aqua;
+      }
+      ion-label{
+
+      }
+    }
+  }
+}

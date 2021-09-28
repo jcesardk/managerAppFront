@@ -41,19 +41,13 @@
       </ion-item>
       <ion-item>
         <ion-select formControlName="perfil" placeholder="Selecione o perfil">
-          <ion-select-option value="administrador"
-            >Administrador</ion-select-option
-          >
-          <ion-select-option value="usuarioComum"
-            >Usuario Comum</ion-select-option
-          >
-          <ion-select-option value="gerente">Gerente</ion-select-option>
+          <ion-select-option [value]="perfil?._id" *ngFor="let perfil of perfil"
+            >{{perfil?.nome}}</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-select formControlName="aplicativos"  placeholder="Selecione seu(s) aplicativos">
-          <ion-select-option value="brb"
-            >App1</ion-select-option>
+        <ion-select formControlName="aplicativo"  placeholder="Selecione seu(s) aplicativos" multiple="true">
+          <ion-select-option [value]="app?._id" *ngFor="let app of aplicativos" multiple="true">{{ app?.nome }}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-list>
